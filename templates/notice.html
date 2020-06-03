@@ -1,0 +1,35 @@
+{%extends "layout.html"%}
+{%block body %}
+
+<div class="container">
+
+
+
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-bell "></i>&nbsp;返信一覧</li>
+
+        </ul>
+    </div>
+    <hr>
+
+
+
+    {% for notice_post in notice_posts %}
+    <div class="card">
+
+
+        <div class="card-body">
+            <h8 class="card-subtitle mb-2 text-muted">{{notice_post[6]}}</h8>
+            <p class="card-text">{{notice_post[1]}}</p>
+            <a href="/time/{{notice_post[2]}}" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div> <br>
+
+    {% endfor %}
+
+</div>
+
+
+{%endblock%}

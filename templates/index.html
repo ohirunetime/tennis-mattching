@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container ">
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">テニスコート一覧</h2>
+
+                </div>
+            </div>
+
+            <table class="table table-striped">
+
+
+
+                <tbody>
+                    {%if facilitys %}
+                    {% for facility in facilitys%}
+
+
+                    <tr>
+                        <th scope="row"></th>
+                        <td><a href="facility/{{facility[0]}}">{{facility[1]}}</a></td>
+                    </tr>
+                    {% endfor %}
+                    {%else%}
+                    <tr>
+                        <th scope="row"></th>
+                        <td>comming soon</td>
+                    </tr>
+
+                </tbody>
+
+
+                {%endif%}
+
+            </table>
+        </div>
+    </div>
+
+
+    {% endblock %}

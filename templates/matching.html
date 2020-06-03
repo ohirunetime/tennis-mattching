@@ -1,0 +1,219 @@
+{%extends "layout.html"%}
+{%block body %}
+
+<div class="container">
+
+
+
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">募集</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#history" role="tab" aria-controls="history" aria-selected="false">料金</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><i class="far fa-clock"></i>&nbsp;&nbsp;{{facility_posts[0][1]}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;~{{facility_posts[0][2]}}</h5>
+            <h8 class="card-subtitle mb-2">{{facility_posts[0][4]}}</h8><br>
+            <h8 class="card-subtitle mb-2">空きコート数:{{facility_posts[0][11]}}面</h8>
+
+            <hr class="bar1">
+
+
+            <div class="tab-content mt-3">
+                <div class="tab-pane active" id="description" role="tabpanel">
+
+
+
+                    {% for facility_post in facility_posts %}
+
+                    <p class="card-text">
+
+                        {% if facility_post[8] %}
+
+
+
+                        <p><i class="far fa-user-circle"></i>&nbsp;{{ facility_post[8] }}<br>
+
+                            {%else%}
+                            <p>現在募集されていません。是非募集してみましょう!!
+
+                                {% endif %}
+
+                                {% if facility_post[10] %}
+                                <font size="3">&nbsp;&nbsp;<i class="far fa-paper-plane orange-color "></i>&nbsp;{{facility_post[10]}}</font>
+                                <br>
+                                {% endif  %}
+
+                                {% if facility_post[6] %}
+
+                                {{facility_post[6]}}
+
+                            </p>
+                            <button class="btn btn-outline-success btn-xs" type="button" data-toggle="collapse" data-target="#collapseExample{{facility_post[9]}}" aria-expanded="false" aria-controls="collapseExample{{facility_post[9]}}">
+                                <i class="fas fa-reply"></i>
+                            </button>
+
+                            {% endif  %}
+
+
+                            <hr>
+
+                            <div class="collapse" id="collapseExample{{facility_post[9]}}">
+                                <div class="card card-body">
+                                    <form action="/create_post_reply" method="post">
+
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="post_id" value="{{facility_post[9]}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="facility_time_id" value="{{facility_post[0]}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="reply_user_id" value="{{facility_post[7]}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="reply_user_name" value="{{facility_post[8]}}">
+                                        </div>
+
+
+
+                                        <textarea name="post_description" class="form-control" rows="2" placeholder="{{facility_post[8]}}さんに返信する" required></textarea>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-outline-success btn-xs">送信</button>
+
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            {% endfor %}
+
+
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                募集
+                            </button>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+
+                                    <form action="/matching" method="post">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="facility_time_id" value="{{facility_posts[0][0]}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="number" class="control-label col-xs-2">年齢</label>
+                                            <div class="col-xs-3">
+                                              <select class="form-control" id="number" name="age">
+                                                <option value="1">10代</option>
+                                                <option value="2" selected="selected">20代</option>
+                                                <option value="3">30代</option>
+                                                <option value="4">40代</option>
+                                                <option value="5">50代</option>
+                                                <option value="6">60代</option>
+                                              </select>
+                                            </div>
+                                          </div>
+
+                                          性別：<input type="radio" name="sex" value="1" checked="checked">male
+                                <input type="radio" name="sex" value="2">female
+
+                                <div class="form-group">
+                                    <label for="number" class="control-label col-xs-2">level</label>
+                                    <div class="col-xs-3">
+                                      <select class="form-control" id="number" name="level">
+                                        <option value="1"selected="selected">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+
+
+                                        <button class="btn btn-primary">送信</button>
+                                    </form>
+
+                                    <hr>
+                                    <form action="/matching" method="get">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" name="facility_time_id" value="{{facility_posts[0][0]}}">
+                                        </div>
+
+
+                                        <button class="btn btn-primary">search</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                </div>
+
+                <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
+                    <p class="card-text">{{facility_posts[0][3]}}</p>
+                </div>
+
+                <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                    <p class="card-text"></p>
+
+                    <form action="/reserve" method="post">
+                        <div class="form-group">
+
+                            <input type="hidden" name="facility_time_id" value="{{facility_posts[0][0]}}">
+
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <!-- Button trigger modal -->
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+
+
+
+
+
+</div>
+
+<script>
+    $('#bologna-list a').on('click', function(e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+</script>
+
+<style type="text/css">
+    .bar1 {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #ffaaaa;
+        border: 0;
+        /*デフォルトデザインでは線がある場合があるので、消しておく。*/
+    }
+
+    .orange-color {
+        color: orange
+    }
+
+</style>
+
+
+{%endblock%}

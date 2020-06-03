@@ -1,0 +1,55 @@
+{%extends "layout.html"%}
+{%block body %}
+<h3>後からでも変更できます！</h3>
+
+
+<div class="container">
+    <div class="container">
+        <form action="/create_profile" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">アカウント名</label>
+                <input type="text" name="name" class="form-control" placeholder="ほのぼの" required>
+            </div>
+
+            性別：<input type="radio" name="sex" value="1" checked="checked">male
+            <input type="radio" name="sex" value="2">female
+
+
+            <div class="form-group">
+                <label for="number" class="control-label col-xs-2">年齢</label>
+                <div class="col-xs-3">
+                    <select class="form-control" id="number" name="age">
+                        <option value="1">10代</option>
+                        <option value="2" selected="selected">20代</option>
+                        <option value="3">30代</option>
+                        <option value="4">40代</option>
+                        <option value="5">50代</option>
+                        <option value="6">60代</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="number" class="control-label col-xs-2">level</label>
+                <div class="col-xs-3">
+                    <select class="form-control" id="number" name="level">
+                        <option value="1">1</option>
+                        <option value="2" selected="selected">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">profile</label>
+                <textarea name="description" class="form-control" rows="6" placeholder="テニス初心者なのでラリー程度です！　　　高校まで部活でテニスしてました。など"></textarea>
+            </div>
+            <button class="btn btn-primary">作成</button>
+        </form>
+
+    </div>
+</div>
+{%endblock%}

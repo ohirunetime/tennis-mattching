@@ -1,0 +1,32 @@
+
+{%extends "layout.html"%}
+{%block body %}
+<div class="container">
+
+
+
+<table class="table">
+<thead>
+    <tr>
+        <th scope="col">開始</th>
+        <th scope="col">終了</th>
+        <th scope="col">ユーザー</th>
+        <th scope="col">ユーザー</th>
+
+    </tr>
+</thead>
+<tbody>
+  {%for reservation in reservations%}
+    <tr>
+       <td>{{reservation[0]}}</td>
+        <td>{{reservation[1]}}</td>
+        <td><a href="/user/{{reservation[2]}}">ユーザー</a></td>
+        <td><a href="/user/{{reservation[2]}}">ユーザー</a></td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+
+    </div>
+  {%endblock%}

@@ -1,0 +1,33 @@
+{%extends "layout.html"%}
+{%block body %}
+
+
+
+<div class="container">
+    <!-- Card -->
+    <div class="card">
+
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="/static/p5334.jpg" alt="Card image cap">
+
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <!-- Text -->メールアドレスは必要なく、固有のIDを発行します。 <br>
+            またログイン時に必要なのは発行されたIDだけです！ <br>
+            わずか1秒で会員登録完了できます！
+            <!-- Button -->
+            <form action="/createUUID" method="post">
+                <button class="btn btn-primary">登録</button>
+            </form>
+        </div>
+
+    </div>
+    <!-- Card -->
+</div>
+
+{%endblock%}

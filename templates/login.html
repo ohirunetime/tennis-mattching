@@ -1,0 +1,66 @@
+{%extends "layout.html"%}
+{%block body %}
+
+{%if UUID%}
+<div class="text-center border alert-warning" role="alert p-3">
+    　登録完了しました <br>
+    下の数字はログイン時に必要ですので必ずメモにコピーするかスクリーンショットをお願いします<br>
+    ログインにはこの数字だけでOKです!!<br>
+    *再発行はできません。
+</div>
+
+
+<br>
+<div class="card">
+
+
+    <div id="targerUUID" class="text-center border border-light p-3">
+        {{UUID}}
+    </div>
+    <button id="btnCopy">copy</button>
+    {%endif%}
+
+</div>
+
+<br>
+<div class="card">
+
+    <form class="text-center border border-light p-3" action="/login" method="post">
+
+        <p class="h4 mb-4">Sign in</p>
+
+
+        <input type="text" pattern="^[a-zA-Z0-9!-/:-@¥[-`{-~]*$" name="uuid" class="form-control mb-4" placeholder="ca7a6992-38e6-4ac8-87aa-4eda667ee3d8" required>
+
+
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+</div>
+</form>
+
+
+
+<script>
+    document.querySelector('#btnCopy').addEventListener("click", () => {
+        const element = document.querySelector('#targerUUID'),
+            selection = window.getSelection(),
+            range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        //console.log('選択された文字列: ', selection.toString());
+        const succeeded = document.execCommand('copy');
+        if (succeeded) {
+            alert('コピーが成功しました！必ずどこかに記しておいてください！');
+        } else {
+            alert('コピーが失敗しました!');
+        }
+        selection.removeAllRanges();
+
+    });
+
+</script>
+
+
+{%endblock%}

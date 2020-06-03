@@ -1,0 +1,152 @@
+{%extends "layout.html"%}
+{%block body %}
+<div class="container">
+
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-calendar-day"></i>&nbsp;予約一覧</li>
+
+        </ul>
+    </div>
+    <hr>
+
+    {% for reservation in reservations %}
+
+
+    {% if reservation[2] %}
+
+    <div class="card">
+
+        <div class="card-body">
+
+
+            <h4 class="card-title">
+                <div class="alert alert-danger" role="alert">
+                    確定</div>
+            </h4>
+
+            <h4 class="card-title">
+                {{reservation[6]}}<br>↓ <br>
+                {{reservation[7]}}</h4>
+
+            <h7>&nbsp;<i class="fas fa-map-marker-alt"></i>&nbsp;{{reservation[5]}}</h7><br><br>
+
+            <i class="fas fa-users"></i>&nbsp;&nbsp;<a href="/user/{{reservation[1]}}">参加ユーザー</a>
+            <i class="fas fa-users"></i>&nbsp;&nbsp;<a href="/user/{{reservation[2]}}">参加ユーザー</a>
+
+            <hr>
+
+            <p class="card-text">{{reservation[8]}}</p>
+            <a href="{{reservation[9]}}" target="_blank;">HOMEPAGE</a><br>
+
+            <form action="/cancel_matching" method="post">
+                <div class="form-group">
+
+                    <input type="hidden" name="matching_id" value="{{reservation[0]}}">
+
+                </div>
+
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{reservation[0]}}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+
+                <div class="modal fade" id="exampleModal{{reservation[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{reservation[0]}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="exampleModalLabel">
+
+                                  <i class="far fa-clock"></i>&nbsp;{{reservation[6]}}<br>↓ <br>
+                                  <i class="far fa-clock"></i>&nbsp;{{reservation[7]}}<br>
+
+                                <i class="fas fa-map-marker-alt"></i>&nbsp;{{reservation[5]}}</h6>
+
+
+                            </div>
+                            <div class="modal-body">
+                                の予約を取り消しますか
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                                <button type="submit" class="btn btn-primary">取り消す</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div><br>
+
+    {%else%}
+
+
+    <div class="card">
+
+        <div class="card-body">
+
+          <h4 class="card-title">
+              <div class="alert alert-danger" role="alert">
+                  募集中</div>
+          </h4>
+
+            <h4 class="card-title">
+                {{reservation[6]}}<br>↓ <br>
+                {{reservation[7]}}</h4>
+
+            <h7>&nbsp;<i class="fas fa-map-marker-alt"></i>&nbsp;{{reservation[5]}}</h7><br><br>
+
+            <hr>
+
+            <p class="card-text">{{reservation[8]}}</p>
+            <a href="{{reservation[9]}}" target="_blank;">HOMEPAGE</a><br>
+
+            <form action="/delete_matching" method="post">
+                <div class="form-group">
+
+                    <input type="hidden" name="matching_id" value="{{reservation[0]}}">
+
+                </div>
+
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{reservation[0]}}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+
+                <div class="modal fade" id="exampleModal{{reservation[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{reservation[0]}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="exampleModalLabel">
+
+                                  <i class="far fa-clock"></i>&nbsp;{{reservation[6]}}<br>↓ <br>
+                                  <i class="far fa-clock"></i>&nbsp;{{reservation[7]}}<br>
+
+                                <i class="fas fa-map-marker-alt"></i>&nbsp;{{reservation[5]}}</h6>
+
+
+                            </div>
+                            <div class="modal-body">
+                                の募集を取り消しますか
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                                <button type="submit" class="btn btn-primary">取り消す</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div><br>
+
+    {%endif%}
+
+    {% endfor %}
+
+</div>
+{%endblock%}

@@ -1,0 +1,240 @@
+{%extends "layout.html"%}
+{%block body %}
+<div class="container">
+    <button class="btn btn-outline-success btn-xs" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        募集する
+    </button>
+
+    {% if users %}
+
+
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form action="/matching" method="post">
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="facility_time_id" value="{{users[0][11]}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="number" class="control-label col-xs-2">年齢</label>
+                    <div class="col-xs-3">
+                        <select class="form-control" id="number" name="sex">
+                            <option value="1">男性</option>
+                            <option value="2">女性</option>
+                            <option value="0" selected="selected">指定なし</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="number" class="control-label col-xs-2">年齢</label>
+                    <div class="col-xs-3">
+                        <select class="form-control" id="number" name="age">
+                            <option value="1">10代</option>
+                            <option value="2">20代</option>
+                            <option value="3">30代</option>
+                            <option value="4">40代</option>
+                            <option value="5">50代</option>
+                            <option value="6">60代</option>
+                            <option value="0" selected="selected">指定なし</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="number" class="control-label col-xs-2">level</label>
+                    <div class="col-xs-3">
+                        <select class="form-control" id="number" name="level">
+                            <option value="1">1</option>
+                            <option value="2" selected="selected">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success btn-xs">送信</button>
+
+            </form>
+        </div>
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">募集</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title"><i class="far fa-clock"></i>&nbsp;&nbsp;{{users[0][0]}}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;~{{users[0][1]}}</h5>
+            <h8 class="card-subtitle mb-2">{{users[0][2]}}</h8><br>
+            <h8 class="card-subtitle mb-2">空きコート数:{{users[0][3]}}面</h8>
+            <hr class="bar1">
+
+
+            <div class="tab-content mt-3">
+                <div class="tab-pane active" id="description" role="tabpanel">
+
+
+                    {%for user in users%}
+
+
+
+                    <div class="card-text">
+
+                        <i class="far fa-user-circle"></i>&nbsp;<a href="/user/{{user[9]}}">{{user[8]}}</a>
+
+                        <br><br>
+
+
+                        <form action="/join_matching" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="matching_id" value="{{user[10]}}">
+                            </div>
+
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{user[10]}}">予約</button>
+
+                            <div class="modal fade" id="exampleModal{{user[10]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{user[10]}}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title" id="exampleModalLabel">
+                                              <i class="far fa-user-circle"></i>&nbsp;{{user[8]}}<br>
+
+                                              <i class="far fa-clock"></i>&nbsp;{{users[0][0]}}<br>↓ <br>
+                                              <i class="far fa-clock"></i>&nbsp;{{users[0][1]}}<br>
+
+
+
+                                        </div>
+                                        <div class="modal-body">
+                                            予約をしますか
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                                            <button type="submit" class="btn btn-primary">予約する</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr>
+
+
+                        {%endfor%}
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    {%else%}
+    <p>現在募集されていません。是非募集してみましょう!!
+
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <form action="/matching" method="post">
+
+                    <div class="form-group">
+                        <input type="hidden" id="urlget" class="form-control" name="facility_time_id" value="facility_time_id">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="number" class="control-label col-xs-2">年齢</label>
+                        <div class="col-xs-3">
+                            <select class="form-control" id="number" name="sex">
+                                <option value="1">男性</option>
+                                <option value="2">女性</option>
+                                <option value="0" selected="selected">指定なし</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="number" class="control-label col-xs-2">年齢</label>
+                        <div class="col-xs-3">
+                            <select class="form-control" id="number" name="age">
+                                <option value="1">10代</option>
+                                <option value="2">20代</option>
+                                <option value="3">30代</option>
+                                <option value="4">40代</option>
+                                <option value="5">50代</option>
+                                <option value="6">60代</option>
+                                <option value="0" selected="selected">指定なし</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number" class="control-label col-xs-2">level</label>
+                        <div class="col-xs-3">
+                            <select class="form-control" id="number" name="level">
+                                <option value="1">1</option>
+                                <option value="2" selected="selected">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-outline-success btn-xs">送信</button>
+
+                </form>
+            </div>
+        </div>
+
+
+        {%endif%}
+</div>
+
+
+<script>
+    function urlget() {
+        var url = location.href;
+        id = url.split('/')[4]
+        document.getElementById('urlget').value = id;
+        console.log(id)
+
+    }
+    window.onload = urlget;
+
+</script>
+
+
+
+
+
+
+
+
+{%endblock%}

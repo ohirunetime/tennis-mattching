@@ -1,0 +1,39 @@
+{%extends "layout.html"%}
+{%block body %}
+
+{%if UUID%}
+<h2>施設用完了！！</h2>
+<div class="text-center border alert-danger" role="alert p-3">
+    下の数字はログイン時に必要ですので必ずメモにコピペするかスクショしてね<br>
+    ログインにはこの数字だけでOK!!
+    *再発行はできません。
+</div>
+
+
+<br>
+<hr>
+
+<div class="text-center border border-light p-3">
+    {{UUID}}
+</div>
+{%endif%}
+<br>
+<div class="card">
+
+    <form class="text-center border border-light p-3" action="/login_facility" method="post">
+
+        <p class="h4 mb-4">施設用Sign in</p>
+
+
+        <input type="text" pattern="^[a-zA-Z0-9!-/:-@¥[-`{-~]*$" name="facility_uuid" class="form-control mb-4" placeholder="ca7a6992-38e6-4ac8-87aa-4eda667ee3d8" required>
+
+
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+
+
+
+    </form>
+</div>
+{%endblock%}

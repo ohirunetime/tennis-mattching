@@ -1,0 +1,30 @@
+{%extends "layout.html"%}
+{%block body %}
+<div class="container ">
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">利用可能時間</h2>
+
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        {%for facility_time in facility_times %}
+                        <th><i class="far fa-clock"></i></th>
+                        <th><a href="/time/{{facility_time[0]}}">{{facility_time[1]}}<br>↓<br>
+                        {{facility_time[2]}}</a></th>
+                    </tr>
+                    {% endfor %}
+
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+{%endblock%}

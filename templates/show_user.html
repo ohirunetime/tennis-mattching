@@ -1,0 +1,75 @@
+{%extends "layout.html"%}
+{%block body %}
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="view overlay">
+            <img class="card-img-top" src="https://girlydrop.com/wp-content/uploads/post/p4118.jpg" alt="Card image cap">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <h4 class="card-title">{{user[0]}}</h4>
+
+
+            <p class="card-text">{{user[1]}}</p><br>
+
+
+            {% if user[2] == 1 %}
+            <p class="card-text">男性</p>
+            {%else%}
+            <p class="card-text">女性</p>
+            {%endif%}
+
+
+
+            {%if user[3] == 1%}
+            <p class="card-text">10代</p>
+            {%elif user[3] ==2%}
+            <p class="card-text">20代</p>
+            {%elif user[3] ==3%}
+            <p class="card-text">30代</p>
+            {%elif user[3] ==4%}
+
+            <p class="card-text">40代</p>
+            {%elif user[3] ==5%}
+
+            <p class="card-text">50代</p>
+            {%elif user[3] ==6%}
+
+            <p class="card-text">60代</p>
+            {%elif user[3] ==7%}
+
+            <p class="card-text">70代</p>
+            {%elif user[3] ==8%}
+
+            <p class="card-text">80代</p>
+            {%elif user[3] ==9%}
+            <p class="card-text">50代</p>
+
+            {%elif user[3] ==10%}
+            <p class="card-text">100代</p>
+
+
+            {%endif%}
+
+
+
+            <p class="card-text">{{user[4]}}</p><br>
+
+
+
+
+
+          </div>
+
+
+    </div>
+
+</div>
+{%endblock%}

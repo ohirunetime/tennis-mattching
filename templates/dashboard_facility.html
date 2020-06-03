@@ -1,0 +1,27 @@
+{%extends "layout.html"%}
+{%block body %}
+<h3>後からでも変更できます！</h3>
+
+
+<div class="container">
+    <div class="container">
+        <form action="/create_profile_facility" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">施設名</label>
+                <input type="text" name="name" class="form-control" placeholder="伏見港公園">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">HOMEPAGE_URL</label>
+                <input type="text" name="url" class="form-control" placeholder="https::home//page">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">概要</label>
+                <textarea name="description" class="form-control" rows="6" placeholder="website"></textarea>
+            </div>
+            <button class="btn btn-primary">更新</button>
+        </form>
+
+    </div>
+</div>
+{%endblock%}

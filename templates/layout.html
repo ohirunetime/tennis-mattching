@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+
+</head>
+
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+
+
+    body {
+
+        background-color: #D9DCD9;
+
+    }
+
+</style>
+<!-- Custom styles for this template -->
+</head>
+
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm ">
+        {% if g.user %}
+        <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/">ハヤオキ</h4></a>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="/">HOME</a>
+            <a class="p-2 text-dark" href="/profile">profile</a>
+            <a class="p-2 text-dark" href="/reservation">予約</a>
+
+        </nav>
+
+
+        {%elif g.facility %}
+
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="facility_index">管理ページ</a></h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="/facility_reservation">予約状況</a>
+            <a class="p-2 text-dark" href="/profile_facility">profile</a>
+            <a class="p-2 text-dark" href="/show_facility_time">post</a>
+            <a class="p-2 text-dark" href="/"></a>
+        </nav>
+        <a class="btn btn-outline-primary" href="/logout_facility">ログアウト</a>
+    </div>
+
+
+    {%else%}
+    <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/">ハヤオキ</h4></a>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/info">初めての方</a>
+        <a class="p-2 text-dark" href="/facility_index">施設用</a>
+        <a class="btn btn-outline-primary" href="/createUUID">登録</a>
+        <a class="btn btn-outline-primary" href="/login">ログイン</a>
+
+        {% endif %}
+
+
+
+
+
+
+        </div>
+
+
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+<div class="alert alert-success" role="alert">    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+
+
+
+        {%block body %}
+        {%endblock%}
+
+<br><br>
+</body>
+
+</html>
